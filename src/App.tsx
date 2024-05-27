@@ -1,12 +1,16 @@
+import { Route, Routes } from 'react-router-dom'
 import './App.css'
-import TodoList from './components/TodoList'
+import AddTodo from './pages/AddTodo'
+import Home from './pages/Home'
 
 function App() {
-
   return (
-    <main>
-      <TodoList />
-    </main>
+    <div className="app">
+      <Routes>
+        <Route index element={<Home />} />
+        <Route path="addtodo" element={<AddTodo />} />
+      </Routes>
+    </div>
   )
 }
 

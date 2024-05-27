@@ -1,7 +1,7 @@
-main {
-    width: 600px;
-    height: 700px;
-    background-color: rgb(251, 252, 253);
-    border-radius: 1rem;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+.app {
+  width: 600px;
+  height: 700px;
+  background-color: rgb(251, 252, 253);
+  border-radius: 1rem;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
