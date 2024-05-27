@@ -7,4 +7,8 @@ const getTodos = async () => {
   return response.data;
 };
 
-export { getTodos };
+const postTodo = async (todo: Todo) => {
+  await axios.post("todos/", todo);
+};
+
+export { getTodos, postTodo };
