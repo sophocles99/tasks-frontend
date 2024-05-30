@@ -5,14 +5,20 @@ import dateToday from "../utils/date-today";
 const Home = () => {
   return (
     <>
-      <p className="date">{dateToday()}</p>
-      <header>To-Do List</header>
+      <header>
+        <p className="date">{dateToday()}</p>
+        <h1>To-Do List</h1>
+      </header>
       <main>
-        <TodoList />
+        <section>
+          <TodoList />
+        </section>
+        <section>
+          <button>
+            <Link to="/addtodo">Add Todo</Link>
+          </button>
+        </section>
       </main>
-      <button>
-        <Link to="/addtodo">Add Todo</Link>
-      </button>
     </>
   );
 };
