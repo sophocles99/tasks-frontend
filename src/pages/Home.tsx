@@ -1,10 +1,12 @@
 import { Link } from "react-router-dom";
 import TodoList from "../components/TodoList";
+import dateToday from "../utils/date-today";
 
 const Home = () => {
   return (
     <>
-      <header>Home</header>
+      <p className="date">{dateToday()}</p>
+      <header>To-Do List</header>
       <main>
         <TodoList />
       </main>
