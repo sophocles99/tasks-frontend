@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getTodos } from "../api";
 import TodoCard from "./TodoCard";
+import styles from "../styles/TodoList.module.css"
 
 const TodoList = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
@@ -30,7 +31,7 @@ const TodoList = () => {
   }
 
   return (
-    <section>
+    <section className={styles["todolist"]}>
       <ul>
         {todos.map((todo) => (
           <li key={todo.id}>

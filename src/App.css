@@ -1,7 +1,8 @@
 .app {
-  width: 375px;
-  height: 667px;
-  background-color: rgb(251, 252, 253);
-  border-radius: 1rem;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    position: relative;
+    width: 350px;
+    height: 667px;
+    background-color: rgb(251, 252, 253);
+    border-radius: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
