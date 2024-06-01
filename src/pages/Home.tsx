@@ -1,7 +1,7 @@
-import { Link } from "react-router-dom";
 import TaskList from "../components/TaskList";
 import dateToday from "../utils/date-today";
 import styles from "../styles/Home.module.css"
+import AddTaskButton from "../components/AddTaskButton";
 
 const Home = () => {
   return (
@@ -14,9 +14,7 @@ const Home = () => {
         <TaskList />
       </main>
       <footer className={styles["footer"]}>
-        <button className={styles["add-task-button"]}>
-          <Link to="/addtask">add task</Link>
-        </button>
+        <AddTaskButton />
       </footer>
     </div>
   );

@@ -1,0 +1,11 @@
+.add-task-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 1000px;
+    font-size: 3rem;
+    color: var(--dark-highlight);
+    background-color: var(--primary-background);
+}
