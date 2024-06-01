@@ -5,7 +5,7 @@ import styles from "../styles/AddTaskButton.module.css";
 
 const AddTaskButton = () => {
     return <>
-        <Link to="/addtask" className={styles["add-task-button"]}>
+        <Link to="/add-task" className={styles["add-task-button"]}>
             <FontAwesomeIcon icon={faPlus} />
         </Link>
     </>
