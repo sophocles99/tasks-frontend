@@ -1,25 +1,25 @@
 import { useEffect, useState } from "react";
-import { getTodos } from "../api";
-import TodoCard from "./TodoCard";
-import styles from "../styles/TodoList.module.css"
+import { getTasks } from "../api";
+import TaskCard from "./TaskCard";
+import styles from "../styles/TaskList.module.css"
 
-const TodoList = () => {
-  const [todos, setTodos] = useState<Todo[]>([]);
+const TaskList = () => {
+  const [tasks, setTasks] = useState<Task[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const populateTodos = async () => {
+    const populateTasks = async () => {
       try {
-        const data = await getTodos();
-        setTodos(data);
+        const data = await getTasks();
+        setTasks(data);
       } catch (error) {
         setError((error as Error).message);
       } finally {
         setLoading(false);
       }
     };
-    populateTodos();
+    populateTasks();
   }, []);
 
   if (loading) {
@@ -31,11 +31,11 @@ const TodoList = () => {
   }
 
   return (
-    <section className={styles["todolist"]}>
+    <section className={styles["tasklist"]}>
       <ul>
-        {todos.map((todo) => (
-          <li key={todo.id}>
-            <TodoCard todo={todo} />
+        {tasks.map((task) => (
+          <li key={task.id}>
+            <TaskCard task={task} />
           </li>
         ))}
       </ul>
@@ -43,4 +43,4 @@ const TodoList = () => {
   );
 };
 
-export default TodoList;
+export default TaskList;

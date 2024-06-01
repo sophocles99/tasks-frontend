@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import TodoList from "../components/TodoList";
+import TaskList from "../components/TaskList";
 import dateToday from "../utils/date-today";
 import styles from "../styles/Home.module.css"
 
@@ -11,11 +11,11 @@ const Home = () => {
         <h1 className={styles["title"]}>Tasks</h1>
       </header>
       <main className={styles["main"]}>
-          <TodoList />
+        <TaskList />
       </main>
       <footer className={styles["footer"]}>
         <button className={styles["add-task-button"]}>
-          <Link to="/addtodo">add task</Link>
+          <Link to="/addtask">add task</Link>
         </button>
       </footer>
     </div>

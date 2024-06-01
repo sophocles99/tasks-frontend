@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { postTodo } from "../api";
+import { postTask } from "../api";
 
-const AddTodo = () => {
+const AddTask = () => {
   const [title, setTitle] = useState<string>("");
   const [description, setDescription] = useState<string>("");
   const navigate = useNavigate();
@@ -24,13 +24,13 @@ const AddTodo = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const todo: Todo = {
+    const task: Task = {
       title,
       description,
       status: "not done",
     };
     try {
-      await postTodo(todo);
+      await postTask(task);
       setTitle("");
       setDescription("");
       navigate("/");
@@ -41,14 +41,14 @@ const AddTodo = () => {
 
   return (
     <>
-      <header>New To-do</header>
+      <header>New Task</header>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
           name="title"
           value={title}
           onChange={handleChange}
-          placeholder="To-do"
+          placeholder="Task"
         />
         <input
           type="text"
@@ -62,4 +62,4 @@ const AddTodo = () => {
     </>
   );
 };
-export default AddTodo;
+export default AddTask;
