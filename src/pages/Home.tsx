@@ -5,22 +5,20 @@ import styles from "../styles/Home.module.css"
 
 const Home = () => {
   return (
-    <>
+    <div className={styles["home-container"]}>
       <header className={styles["header"]}>
         <p className={styles["date"]}>{dateToday()}</p>
-        <h1 className={styles["title"]}>To-Do List</h1>
+        <h1 className={styles["title"]}>Tasks</h1>
       </header>
       <main className={styles["main"]}>
-        <section className={styles["todolist-container"]}>
           <TodoList />
-        </section>
-        <section>
-          <button>
-            <Link to="/addtodo">Add Todo</Link>
-          </button>
-        </section>
       </main>
-    </>
+      <footer className={styles["footer"]}>
+        <button className={styles["add-task-button"]}>
+          <Link to="/addtodo">add task</Link>
+        </button>
+      </footer>
+    </div>
   );
 };
 
