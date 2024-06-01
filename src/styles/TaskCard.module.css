@@ -1,0 +1,13 @@
+.task-card {
+    display: flex;
+    align-items: center;
+    height: 3.5rem;
+    margin-bottom: 1rem;
+    border-radius: 0.5rem;
+    color: var(--dark-highlight);
+    background-color: var(--primary-background);
+}
+
+.title {
+    font-size: 1.125rem;
+}

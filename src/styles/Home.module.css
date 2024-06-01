@@ -10,9 +10,6 @@
 
 .main {
     margin-top: 1rem;
-    border-radius: 1rem;
-    color: var(--dark-highlight);
-    background-color: var(--primary-background);
 }
 
 .footer {

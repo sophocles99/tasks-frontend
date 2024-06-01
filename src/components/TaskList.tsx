@@ -31,7 +31,7 @@ const TaskList = () => {
   }
 
   return (
-    <section className={styles["tasklist"]}>
+    <section className={styles["task-list"]}>
       <ul>
         {tasks.map((task) => (
           <li key={task.id}>

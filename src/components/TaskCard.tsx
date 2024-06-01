@@ -1,16 +1,17 @@
 import StatusIcon from "./StatusIcon";
+import styles from "../styles/TaskCard.module.css";
 
 type TaskCardProps = {
-  task: Task;
+    task: Task;
 };
 
 const TaskCard = ({ task }: TaskCardProps) => {
-  return (
-    <section>
-      <StatusIcon status={task.status} />
-      <p>{task.title}</p>
-    </section>
-  );
+    return (
+        <section className={styles["task-card"]}>
+            <StatusIcon status={task.status} />
+            <p className={styles["title"]}>{task.title}</p>
+        </section>
+    );
 };
 
 export default TaskCard;
