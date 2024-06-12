@@ -1,5 +1,5 @@
-import StatusIcon from "./StatusIcon";
 import styles from "../styles/TaskCard.module.css";
+import StatusIcon from "./StatusIcon";
 
 type TaskCardProps = {
     task: Task;
