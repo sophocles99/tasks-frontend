@@ -1,5 +1,5 @@
 import { faCircle, faCircleCheck } from "@fortawesome/free-regular-svg-icons";
-import { faRotate } from "@fortawesome/free-solid-svg-icons";
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styles from "../styles/StatusIcon.module.css";
 
@@ -9,8 +9,8 @@ type StatusIconProps = {
 
 const StatusIcon = ({ status }: StatusIconProps) => {
   const statusIcons = {
-    done: faCircleCheck,
-    "in progress": faRotate,
+    "done": faCircleCheck,
+    "in progress": faSpinner,
     "not done": faCircle,
   };
 
