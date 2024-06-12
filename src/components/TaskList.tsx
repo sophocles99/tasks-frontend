@@ -22,6 +22,15 @@ const TaskList = () => {
         populateTasks();
     }, []);
 
+    const handleStatusChange = (id: string, newStatus: Status) => {
+        // TODO Update task in database
+        setTasks((prevTasks) =>
+            prevTasks.map((task) =>
+                task.id === id ? { ...task, status: newStatus } : task
+            )
+        );
+    };
+
     if (loading) {
         return <p>Loading...</p>;
     }
@@ -35,7 +44,10 @@ const TaskList = () => {
             <ul>
                 {tasks.map((task) => (
                     <li key={task.id}>
-                        <TaskCard task={task} />
+                        <TaskCard
+                            task={task}
+                            onStatusChange={handleStatusChange}
+                        />
                     </li>
                 ))}
             </ul>

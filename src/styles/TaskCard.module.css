@@ -8,6 +8,14 @@
     background-color: var(--primary-background);
 }
 
+.status-icon-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 3.25rem;
+    height: 3.25rem;
+}
+
 .title {
     font-size: 1.125rem;
 }
