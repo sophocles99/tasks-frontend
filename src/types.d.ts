@@ -7,3 +7,9 @@ type Task = {
     created_at: string;
     id: string;
 };
+
+type TaskPatch = {
+    title?: string;
+    description?: string;
+    status?: Status;
+};

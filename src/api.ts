@@ -11,4 +11,8 @@ const postTask = async (task: Task) => {
     await axios.post("tasks/", task);
 };
 
-export { getTasks, postTask };
+const patchTask = async (id: string, taskPatch: TaskPatch) => {
+    await axios.patch(`tasks/${id}`, taskPatch);
+};
+
+export { getTasks, postTask, patchTask };

@@ -1,20 +1,23 @@
 import { useEffect, useState } from "react";
-import { getTasks } from "../api";
+import { getTasks, patchTask } from "../api";
 import styles from "../styles/TaskList.module.css";
 import TaskCard from "./TaskCard";
 
 const TaskList = () => {
     const [tasks, setTasks] = useState<Task[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
-    const [error, setError] = useState<string | null>(null);
+    const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
     useEffect(() => {
         const populateTasks = async () => {
             try {
                 const data = await getTasks();
                 setTasks(data);
+                setErrorMessage(null);
             } catch (error) {
-                setError((error as Error).message);
+                setErrorMessage(
+                    "Unable to load tasks. Please check your internet connection."
+                );
             } finally {
                 setLoading(false);
             }
@@ -22,36 +25,48 @@ const TaskList = () => {
         populateTasks();
     }, []);
 
-    const handleStatusChange = (id: string, newStatus: Status) => {
-        // TODO Update task in database
+    const handleStatusChange = async (id: string, newStatus: Status) => {
+        const oldTasks = [...tasks];
         setTasks((prevTasks) =>
             prevTasks.map((task) =>
                 task.id === id ? { ...task, status: newStatus } : task
             )
         );
+        try {
+            await patchTask(id, { status: newStatus });
+            setErrorMessage(null);
+        } catch (error) {
+            setTasks(oldTasks);
+            setErrorMessage(
+                "Unable to update task. Please check your internet connection."
+            );
+        }
     };
 
     if (loading) {
         return <p>Loading...</p>;
     }
 
-    if (error) {
-        return <p>Error: {error}</p>;
-    }
-
     return (
-        <section className={styles["task-list"]}>
-            <ul>
-                {tasks.map((task) => (
-                    <li key={task.id}>
-                        <TaskCard
-                            task={task}
-                            onStatusChange={handleStatusChange}
-                        />
-                    </li>
-                ))}
-            </ul>
-        </section>
+        <>
+            {errorMessage && (
+                <section>
+                    <p>{errorMessage}</p>
+                </section>
+            )}
+            <section className={styles["task-list"]}>
+                <ul>
+                    {tasks.map((task) => (
+                        <li key={task.id}>
+                            <TaskCard
+                                task={task}
+                                onStatusChange={handleStatusChange}
+                            />
+                        </li>
+                    ))}
+                </ul>
+            </section>
+        </>
     );
 };
 
