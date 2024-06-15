@@ -50,7 +50,7 @@ const TaskList = () => {
     return (
         <>
             {errorMessage && (
-                <section>
+                <section className={styles["error-message"]}>
                     <p>{errorMessage}</p>
                 </section>
             )}
