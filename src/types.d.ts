@@ -1,15 +1,14 @@
 type Status = "done" | "in progress" | "not done";
 
-type Task = {
+interface NewTask {
     title: string;
     description: string;
     status: Status;
+}
+
+interface FullTask extends NewTask {
     created_at: string;
     id: string;
-};
+}
 
-type TaskPatch = {
-    title?: string;
-    description?: string;
-    status?: Status;
-};
+type TaskPatch = Partial<NewTask>;

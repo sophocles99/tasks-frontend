@@ -2,7 +2,7 @@ import styles from "../styles/TaskList.module.css";
 import TaskCard from "./TaskCard";
 
 interface Props {
-    tasks: Task[];
+    tasks: FullTask[];
     onStatusChange: (id: string, newStatus: Status) => void;
 }
 

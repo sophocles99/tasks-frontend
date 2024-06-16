@@ -6,7 +6,7 @@ import styles from "../styles/Home.module.css";
 import dateToday from "../utils/date-today";
 
 const Home = () => {
-    const [tasks, setTasks] = useState<Task[]>([]);
+    const [tasks, setTasks] = useState<FullTask[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
 

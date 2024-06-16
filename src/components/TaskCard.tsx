@@ -2,7 +2,7 @@ import styles from "../styles/TaskCard.module.css";
 import StatusIcon from "./StatusIcon";
 
 interface Props {
-    task: Task;
+    task: FullTask;
     onStatusChange: (id: string, newStatus: Status) => void;
 }
 

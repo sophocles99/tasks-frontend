@@ -24,7 +24,7 @@ const AddTask = () => {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        const task: Task = {
+        const task: FullTask = {
             title,
             description,
             status: "not done",

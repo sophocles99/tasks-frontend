@@ -7,7 +7,7 @@ const getTasks = async () => {
     return response.data;
 };
 
-const postTask = async (task: Task) => {
+const postTask = async (task: FullTask) => {
     await axios.post("tasks/", task);
 };
 
