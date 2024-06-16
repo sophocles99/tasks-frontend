@@ -1,12 +1,12 @@
 import styles from "../styles/TaskCard.module.css";
 import StatusIcon from "./StatusIcon";
 
-type TaskCardProps = {
+interface Props {
     task: Task;
     onStatusChange: (id: string, newStatus: Status) => void;
-};
+}
 
-const TaskCard = ({ task, onStatusChange }: TaskCardProps) => {
+const TaskCard = ({ task, onStatusChange }: Props) => {
     const { id, title, status } = task;
 
     const handleStatusClick = () => {

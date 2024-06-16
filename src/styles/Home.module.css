@@ -21,3 +21,12 @@
     display: flex;
     justify-content: center;
 }
+
+.message {
+    margin-bottom: 1rem;
+}
+
+.error-message {
+    color: #ff4444;
+    margin-bottom: 1rem;
+}
