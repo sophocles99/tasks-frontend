@@ -1,6 +1,6 @@
 import { faPlus } from "@fortawesome/free-solid-svg-icons/faPlus";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useRef, useState } from "react";
 import styles from "../styles/AddTaskModal.module.css";
 import Overlay from "./Overlay";
 
@@ -12,9 +12,19 @@ interface Props {
 const AddTaskModal = ({ onAddTask, onClose }: Props) => {
     const [title, setTitle] = useState<string>("");
     const [description, setDescription] = useState<string>("");
+    const titleInputRef = useRef<HTMLInputElement>(null);
+
+    const focusTitleInput = () => {
+        if (titleInputRef.current) {
+            titleInputRef.current.focus();
+        }
+    };
+
+    useEffect(() => focusTitleInput(), []);
 
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
+        if (!title.trim()) return;
         const newTask: NewTask = {
             title,
             description,
@@ -22,6 +32,7 @@ const AddTaskModal = ({ onAddTask, onClose }: Props) => {
         onAddTask(newTask);
         setTitle("");
         setDescription("");
+        focusTitleInput();
     };
 
     return (
@@ -35,6 +46,7 @@ const AddTaskModal = ({ onAddTask, onClose }: Props) => {
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
                     placeholder="New task"
+                    ref={titleInputRef}
                 />
                 <div className={styles["description-input-container"]}>
                     <textarea
