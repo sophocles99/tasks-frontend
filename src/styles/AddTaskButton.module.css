@@ -8,6 +8,7 @@
     font-size: 3rem;
     color: var(--dark-highlight);
     background-color: var(--primary-background);
+    z-index: 1;
 }
 
 .add-task-button:hover {

@@ -1,10 +1,15 @@
+import { faPlus } from "@fortawesome/free-solid-svg-icons/faPlus";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FormEvent, useState } from "react";
+import styles from "../styles/AddTaskModal.module.css";
+import Overlay from "./Overlay";
 
 interface Props {
     onAddTask: (newTask: NewTask) => void;
+    onClose: () => void;
 }
 
-const AddTaskModal = ({ onAddTask }: Props) => {
+const AddTaskModal = ({ onAddTask, onClose }: Props) => {
     const [title, setTitle] = useState<string>("");
     const [description, setDescription] = useState<string>("");
 
@@ -20,23 +25,31 @@ const AddTaskModal = ({ onAddTask }: Props) => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <input
-                type="text"
-                name="title"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-                placeholder="Task"
-            />
-            <input
-                type="text"
-                name="description"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-                placeholder="Description"
-            />
-            <button type="submit">Add Task</button>
-        </form>
+        <>
+            <Overlay onClick={onClose} />
+            <form className={styles["add-task-form"]} onSubmit={handleSubmit}>
+                <input
+                    className={styles["title-input"]}
+                    type="text"
+                    name="title"
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                    placeholder="New task"
+                />
+                <div className={styles["description-input-container"]}>
+                    <textarea
+                        className={styles["description-input"]}
+                        name="description"
+                        value={description}
+                        onChange={(e) => setDescription(e.target.value)}
+                        placeholder="Task description (optional)"
+                    />
+                    <button className={styles["add-task-button"]} type="submit">
+                        <FontAwesomeIcon icon={faPlus} />
+                    </button>
+                </div>
+            </form>
+        </>
     );
 };
 

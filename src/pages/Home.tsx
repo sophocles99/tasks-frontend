@@ -92,7 +92,12 @@ const Home = () => {
                 )}
                 <TaskList tasks={tasks} onStatusChange={handleStatusChange} />
             </main>
-            {addTaskModalVisible && <AddTaskModal onAddTask={handleAddTask} />}
+            {addTaskModalVisible && (
+                <AddTaskModal
+                    onAddTask={handleAddTask}
+                    onClose={() => setAddTaskModalVisible(false)}
+                />
+            )}
             <footer className={styles["footer"]}>
                 <AddTaskButton
                     type={addTaskModalVisible ? "close" : "open"}
