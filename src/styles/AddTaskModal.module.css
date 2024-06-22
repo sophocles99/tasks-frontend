@@ -13,9 +13,9 @@
 }
 
 input, textarea {
-    height: 2.25rem;
+    height: 3rem;
     resize: none;
-    padding: 0.25rem;
+    padding: 0.5rem;
     border-radius: 0.25rem;
     border: 1px solid var(--dark-highlight);
     font: inherit;
@@ -30,7 +30,7 @@ input, textarea {
 }
 
 .description-input {
-    height: 4.5rem;
+    height: 6rem;
     flex-grow: 1;
 }
 
