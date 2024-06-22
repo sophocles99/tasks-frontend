@@ -1,14 +1,16 @@
 import { useEffect, useState } from "react";
-import { getTasks, patchTask } from "../api";
+import { getTasks, patchTask, postTask } from "../api";
 import AddTaskButton from "../components/AddTaskButton";
+import AddTaskModal from "../components/AddTaskModal";
 import TaskList from "../components/TaskList";
 import styles from "../styles/Home.module.css";
 import dateToday from "../utils/date-today";
 
 const Home = () => {
-    const [tasks, setTasks] = useState<FullTask[]>([]);
-    const [loading, setLoading] = useState<boolean>(true);
+    const [addTaskModalVisible, setAddTaskModalVisible] = useState(false);
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
+    const [loading, setLoading] = useState<boolean>(true);
+    const [tasks, setTasks] = useState<FullTask[]>([]);
 
     useEffect(() => {
         const populateTasks = async () => {
@@ -45,6 +47,32 @@ const Home = () => {
         }
     };
 
+    const handleAddTask = async (newTask: NewTask) => {
+        const oldTasks = [...tasks];
+        const tempId = "temp-id-" + Date.now();
+        const tempNewFullTask: FullTask = {
+            ...newTask,
+            status: "not done",
+            created_at: "temp-null-date",
+            id: tempId,
+        };
+        setTasks((prevTasks) => [...prevTasks, tempNewFullTask]);
+        try {
+            const newFullTaskFromDB = await postTask(newTask);
+            setTasks((prevTasks) =>
+                prevTasks.map((task) =>
+                    task.id === tempId ? newFullTaskFromDB : task
+                )
+            );
+            setErrorMessage(null);
+        } catch (error) {
+            setTasks(oldTasks);
+            setErrorMessage(
+                "Unable to create new task. Please check your internet connection."
+            );
+        }
+    };
+
     return (
         <>
             <header className={styles["header"]}>
@@ -64,8 +92,16 @@ const Home = () => {
                 )}
                 <TaskList tasks={tasks} onStatusChange={handleStatusChange} />
             </main>
+            {addTaskModalVisible && <AddTaskModal onAddTask={handleAddTask} />}
             <footer className={styles["footer"]}>
-                <AddTaskButton />
+                <AddTaskButton
+                    type={addTaskModalVisible ? "close" : "open"}
+                    onClick={() =>
+                        setAddTaskModalVisible(
+                            (previousVisibility) => !previousVisibility
+                        )
+                    }
+                />
             </footer>
         </>
     );

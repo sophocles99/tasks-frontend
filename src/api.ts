@@ -7,8 +7,9 @@ const getTasks = async () => {
     return response.data;
 };
 
-const postTask = async (task: FullTask) => {
-    await axios.post("tasks/", task);
+const postTask = async (task: NewTask) => {
+    const response = await axios.post("tasks/", task);
+    return response.data as FullTask;
 };
 
 const patchTask = async (id: string, taskPatch: TaskPatch) => {

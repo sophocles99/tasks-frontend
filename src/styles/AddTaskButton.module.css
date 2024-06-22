@@ -9,3 +9,7 @@
     color: var(--dark-highlight);
     background-color: var(--primary-background);
 }
+
+.add-task-button:hover {
+    cursor: pointer;
+}

@@ -1,13 +1,18 @@
 import { faPlus } from "@fortawesome/free-solid-svg-icons/faPlus";
+import { faXmark } from "@fortawesome/free-solid-svg-icons/faXmark";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link } from "react-router-dom";
 import styles from "../styles/AddTaskButton.module.css";
 
-const AddTaskButton = () => {
+interface Props {
+    type: "open" | "close";
+    onClick: () => void;
+}
+
+const AddTaskButton = ({ type, onClick }: Props) => {
     return (
-        <Link to="/add-task" className={styles["add-task-button"]}>
-            <FontAwesomeIcon icon={faPlus} />
-        </Link>
+        <div className={styles["add-task-button"]} onClick={onClick}>
+            <FontAwesomeIcon icon={type === "open" ? faPlus : faXmark} />
+        </div>
     );
 };
 
