@@ -3,7 +3,7 @@
     align-items: center;
     height: 3.25rem;
     margin-bottom: 0.25rem;
-    border-radius: 0.25rem;
+    border-radius: 0.5rem;
     color: var(--dark-highlight);
     background-color: var(--primary-background);
 }
