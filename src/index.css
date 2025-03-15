@@ -1,0 +1,22 @@
+* {
+  box-sizing: border-box;
+  font-family: Roboto, Arial, Helvetica Neue, Segoe UI, Verdana, sans-serif;
+}
+
+#root {
+  --background-colour: #3450a1;
+  --primary-colour: #ffffff;
+  --secondary-colour: #97b4ff;
+  --surface-colour: #041955;
+  --surface-secondary: #485b8e;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  background-color: #404448;
+}

@@ -1,0 +1,44 @@
+.categoryPickerTitle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 48px;
+  color: var(--secondary-colour);
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 0.1rem;
+  text-transform: uppercase;
+}
+
+.categoryPickerListContainer {
+  position: relative;
+  width: 100%;
+}
+
+.categoryPickerList {
+  position: relative;
+  display: flex;
+  gap: 1rem;
+  overflow: scroll;
+  scrollbar-width: none;
+}
+
+.categoryPickerList::-webkit-scrollbar {
+  display: none;
+}
+
+.categoryPickerListLeftMask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: linear-gradient(to left, rgba(0, 0, 0, 0), var(--background-colour));
+}
+
+.categoryPickerListRightMask {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0), var(--background-colour));
+}

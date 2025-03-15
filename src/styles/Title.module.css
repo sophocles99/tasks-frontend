@@ -1,0 +1,9 @@
+.title {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 67px;
+  font-size:  40px;
+  font-weight: 600;
+  color: var(--primary-colour);
+}

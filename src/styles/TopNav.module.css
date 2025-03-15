@@ -1,0 +1,11 @@
+.topNav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 72px;
+  color: var(--secondary-colour);
+}
+
+.icons {
+  font-size: 40px;
+}
