@@ -1,0 +1,6 @@
+.taskCard {
+  width: 100%;
+  height: 4.5rem;
+  border-radius: 1.5rem;
+  background-color: var(--surface-colour);
+}

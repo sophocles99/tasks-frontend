@@ -1,14 +1,14 @@
 import { useEffect, useRef, useState } from "react";
 import styles from "../styles/CategoryPicker.module.css";
 import CategoryCard from "./CategoryCard";
-import { defaultCategories } from "../categories.ts";
+import { Category, defaultCategories } from "../categories.ts";
 
-const maxMaskWidth: number = 16;
+const MASK_MAX_WIDTH: number = 16;
 
 const CategoryPicker = () => {
   const pickerListRef = useRef<HTMLDivElement>(null);
   const [leftMaskWidth, setLeftMaskWidth] = useState(0);
-  const [rightMaskWidth, setRightMaskWidth] = useState(maxMaskWidth);
+  const [rightMaskWidth, setRightMaskWidth] = useState(MASK_MAX_WIDTH);
 
   useEffect(() => {
     const pickerListDiv = pickerListRef.current;
@@ -16,8 +16,8 @@ const CategoryPicker = () => {
     if (pickerListDiv) {
       const maxScrollLeft = pickerListDiv.scrollWidth - pickerListDiv.clientWidth;
       const handleScroll = () => {
-        setLeftMaskWidth(Math.min(maxMaskWidth, pickerListDiv.scrollLeft));
-        setRightMaskWidth(Math.min(maxMaskWidth, maxScrollLeft - pickerListDiv.scrollLeft));
+        setLeftMaskWidth(Math.min(MASK_MAX_WIDTH, pickerListDiv.scrollLeft));
+        setRightMaskWidth(Math.min(MASK_MAX_WIDTH, maxScrollLeft - pickerListDiv.scrollLeft));
       };
       pickerListDiv.addEventListener("scroll", handleScroll);
 
@@ -32,12 +32,12 @@ const CategoryPicker = () => {
       <div className={styles.categoryPickerTitle}>categories</div>
       <div className={styles.categoryPickerListContainer}>
         <div className={styles.categoryPickerList} ref={pickerListRef}>
-          {defaultCategories.map((category) => (
+          {defaultCategories.map((category: Category) => (
             <CategoryCard
+              key={category.categoryId}
               categoryName={category.categoryName}
               categoryTaskCount={category.categoryTaskCount}
               categoryTaskCompletedCount={category.categoryTaskCompletedCount}
-              key={category.categoryName}
             ></CategoryCard>
           ))}
         </div>

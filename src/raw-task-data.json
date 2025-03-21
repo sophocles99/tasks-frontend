@@ -1,0 +1,152 @@
+[
+  {
+    "name": "Pay quarterly taxes",
+    "description": "Submit estimated tax payment for Q1 before the deadline.",
+    "categories": ["financial"]
+  },
+  {
+    "name": "Morning jog",
+    "description": "Complete 30-minute run around the neighborhood park.",
+    "categories": ["health"]
+  },
+  {
+    "name": "Fix leaky faucet",
+    "description": "Replace washer in bathroom sink to stop the dripping.",
+    "categories": ["home"]
+  },
+  {
+    "name": "Read new novel",
+    "description": "Finish first three chapters of the book club selection.",
+    "categories": ["personal"]
+  },
+  {
+    "name": "Update project timeline",
+    "description": "Revise milestone dates based on recent progress and resource availability.",
+    "categories": ["work"]
+  },
+  {
+    "name": "Review investment portfolio",
+    "description": "Check performance of stocks and rebalance allocations if necessary.",
+    "categories": ["financial"]
+  },
+  {
+    "name": "Schedule dentist appointment",
+    "description": "Book six-month checkup and cleaning with Dr. Johnson.",
+    "categories": ["health"]
+  },
+  {
+    "name": "Organize garage storage",
+    "description": "Sort through boxes and donate unused items to charity.",
+    "categories": ["home"]
+  },
+  {
+    "name": "Call mom",
+    "description": "Catch up with mom about her upcoming vacation plans.",
+    "categories": ["personal"]
+  },
+  {
+    "name": "Prepare quarterly report",
+    "description": "Compile sales figures and KPIs for the management meeting.",
+    "categories": ["work"]
+  },
+  {
+    "name": "Create monthly budget",
+    "description": "Plan expenses for next month and identify savings opportunities.",
+    "categories": ["financial", "personal"]
+  },
+  {
+    "name": "Meal prep for week",
+    "description": "Prepare healthy lunches and snacks for the upcoming workweek.",
+    "categories": ["health", "personal"]
+  },
+  {
+    "name": "Clean gutters",
+    "description": "Remove leaves and debris from roof gutters before rainy season.",
+    "categories": ["home"]
+  },
+  {
+    "name": "Practice guitar",
+    "description": "Work on new song for 30 minutes and review previous lessons.",
+    "categories": ["personal"]
+  },
+  {
+    "name": "Schedule team meeting",
+    "description": "Coordinate with team members for weekly progress updates.",
+    "categories": ["work"]
+  },
+  {
+    "name": "Renew auto insurance",
+    "description": "Compare rates and update policy before expiration date.",
+    "categories": ["financial"]
+  },
+  {
+    "name": "Track daily water intake",
+    "description": "Drink at least eight glasses of water throughout the day.",
+    "categories": ["health"]
+  },
+  {
+    "name": "Replace HVAC filter",
+    "description": "Install new air filter in the home heating and cooling system.",
+    "categories": ["home", "health"]
+  },
+  {
+    "name": "Meditate",
+    "description": "Complete 15-minute guided meditation for stress relief.",
+    "categories": ["personal", "health"]
+  },
+  {
+    "name": "Research client proposal",
+    "description": "Gather information for upcoming pitch to potential client.",
+    "categories": ["work"]
+  },
+  {
+    "name": "Transfer funds to savings",
+    "description": "Move 10% of paycheck to emergency fund account.",
+    "categories": ["financial"]
+  },
+  {
+    "name": "Grocery shopping",
+    "description": "Buy fresh produce, protein, and essentials for the week.",
+    "categories": ["health", "home"]
+  },
+  {
+    "name": "Repaint living room",
+    "description": "Apply new paint color to walls and touch up trim.",
+    "categories": ["home"]
+  },
+  {
+    "name": "Plan weekend getaway",
+    "description": "Research destinations and accommodations for mini vacation.",
+    "categories": ["personal"]
+  },
+  {
+    "name": "Backup work files",
+    "description": "Archive important documents and project files to secure storage.",
+    "categories": ["work"]
+  },
+  {
+    "name": "File expense report",
+    "description": "Submit receipts for reimbursement from business trip.",
+    "categories": ["financial", "work"]
+  },
+  {
+    "name": "Schedule annual physical",
+    "description": "Book comprehensive health checkup with primary care doctor.",
+    "categories": ["health"]
+  },
+  {
+    "name": "Install new light fixtures",
+    "description": "Replace outdated lighting in kitchen with energy-efficient options.",
+    "categories": ["home"]
+  },
+  {
+    "name": "Learn new language",
+    "description": "Complete next three lessons in Spanish learning app.",
+    "categories": ["personal"]
+  },
+  {
+    "name": "Conduct performance reviews",
+    "description": "Complete quarterly assessments for team members.",
+    "categories": ["work"]
+  }
+]

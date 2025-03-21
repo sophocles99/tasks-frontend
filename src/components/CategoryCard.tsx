@@ -15,7 +15,7 @@ const CategoryCard = ({ categoryName, categoryTaskCount, categoryTaskCompletedCo
     return Math.min(percentage, 100);
   };
   const progressPercentage = calculateProgressPercentage();
-  const progressBarIndicatorColour = categoryNames[categoryName] ?? "var(--surface-secondary";
+  const progressBarIndicatorColour = categoryNames[categoryName] ?? "var(--surface-secondary)";
 
   return (
     <div className={styles.categoryCard}>
