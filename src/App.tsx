@@ -23,7 +23,7 @@ function App() {
       <TopNav></TopNav>
       <Title></Title>
       <CategoryPicker categories={categories}></CategoryPicker>
-      <TaskList tasks={tasks}></TaskList>
+      <TaskList categories={categories} tasks={tasks}></TaskList>
     </div>
   );
 }

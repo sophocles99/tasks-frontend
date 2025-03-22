@@ -8,6 +8,7 @@
 }
 
 .taskStatusContainer {
+  flex-shrink: 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -16,4 +17,15 @@
 
 .icons {
   font-size: 2rem;
+}
+
+.taskName {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 1.25rem;
+  overflow: hidden;
+  text-overflow: ellipsis; /* Not working */
+  white-space: nowrap;
+  color: var(--primary-colour);
 }

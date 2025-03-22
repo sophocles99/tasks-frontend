@@ -2,6 +2,7 @@ import styles from '../styles/TaskCard.module.css';
 import { Task, TaskStatus } from '../tasks';
 
 interface Props {
+  categoryColour: number;
   task: Task;
 }
 
@@ -11,15 +12,19 @@ const statusIcons: Record<TaskStatus, string> = {
   [TaskStatus.Done]: 'check_box',
 };
 
-const TaskCard = ({ task }: Props) => {
+const TaskCard = ({ categoryColour, task }: Props) => {
+  const cssCategoryColour = `#${categoryColour.toString(16).padStart(6, '0')}`;
   return (
     <div className={styles.taskCard}>
       <div className={styles.taskStatusContainer}>
-        <span className={`material-symbols-outlined ${styles.icons}`}>
+        <span
+          className={`material-symbols-outlined ${styles.icons}`}
+          style={{ color: cssCategoryColour }}
+        >
           {statusIcons[task.status]}
         </span>
       </div>
-      {task.name}
+      <div className={styles.taskName}>{task.name}</div>
     </div>
   );
 };
