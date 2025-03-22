@@ -1,0 +1,24 @@
+.taskListTitle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-shrink: 0;
+  height: 48px;
+  color: var(--secondary-colour);
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 0.1rem;
+  text-transform: uppercase;
+}
+
+.taskList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+.taskList::-webkit-scrollbar {
+  display: none;
+}

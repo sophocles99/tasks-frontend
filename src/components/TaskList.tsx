@@ -1,15 +1,23 @@
-import { useState } from 'react';
-import { Task, dummyTasks } from '../tasks';
+import styles from '../styles/TaskList.module.css';
+import { Task } from '../tasks';
 import TaskCard from './TaskCard';
 
-const TaskList = () => {
-  const [tasks, setTasks] = useState<Task[]>(dummyTasks);
+interface Props {
+  tasks: Task[]
+}
+
+const TaskList = ({tasks}:Props) => {
+  const tasksFiltered = tasks.filter((_, index) => index < 7);
+
   return (
-    <div>
-      {tasks.map((task) => (
-        <TaskCard task={task} key={task.id}></TaskCard>
-      ))}
-    </div>
+    <>
+      <div className={styles.taskListTitle}>tasks</div>
+      <div className={styles.taskList}>
+        {tasksFiltered.map((task) => (
+          <TaskCard task={task} key={task.id}></TaskCard>
+        ))}
+      </div>
+    </>
   );
 };
 

@@ -1,15 +1,21 @@
 import { v4 as uuidv4 } from 'uuid';
-import { CategoryId, defaultCategories } from './categories';
+import { CategoryId, dummyCategories } from './categories';
 import rawTaskData from './raw-task-data.json';
 
-export type Status = 'not_started' | 'in_progress' | 'done';
+export enum TaskStatus {
+  NotStarted = 'not_started',
+  InProgress = 'in_progress',
+  Done = 'done',
+}
+
+export type TaskId = string;
 
 export interface Task {
-  id: string;
+  id: TaskId;
   name: string;
   description: string;
   due_date: Date;
-  status: Status;
+  status: TaskStatus;
   categoryIds: CategoryId[];
 }
 
@@ -20,15 +26,19 @@ const createRandomDate = () => {
   return newDate;
 };
 
+const createRandomStatus = () => {
+  const statusValues = Object.values(TaskStatus);
+  const statusIndex = Math.floor(Math.random() * 3);
+  return statusValues[statusIndex];
+};
+
 export const dummyTasks: Task[] = rawTaskData.map((rawTask) => ({
   id: uuidv4(),
   name: rawTask.name,
   description: rawTask.description,
   due_date: createRandomDate(),
-  status: 'not_started',
-  categoryIds: defaultCategories
-    .filter((category) => rawTask.categories.includes(category.categoryName))
-    .map((category) => category.categoryId),
+  status: createRandomStatus(),
+  categoryIds: dummyCategories
+    .filter((category) => rawTask.categories.includes(category.name))
+    .map((category) => category.id),
 }));
-
-console.log(dummyTasks);

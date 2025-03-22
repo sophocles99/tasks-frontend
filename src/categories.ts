@@ -1,25 +1,41 @@
-export const categoryNames = {
-  financial: "#66bb6a",
-  health: "#03a9f4",
-  home: "#ff9800",
-  personal: "#ffeb3b",
-  work: "#ec05ff",
-};
+import { v4 as uuidv4 } from 'uuid';
+import { TaskId } from './tasks';
 
-export type CategoryName = keyof typeof categoryNames;
-
-export type CategoryId = number
-
-export interface Category {
-  categoryId: CategoryId
-  categoryName: CategoryName;
-  categoryTaskCount: number;
-  categoryTaskCompletedCount: number;
+enum DefaultCategory {
+  FINANCIAL = 'financial',
+  HEALTH = 'health',
+  HOME = 'home',
+  PERSONAL = 'personal',
+  WORK = 'work',
 }
 
-export const defaultCategories: Category[] = Object.keys(categoryNames).map((categoryName, index) => ({
-  categoryId: index,
-  categoryName: categoryName as CategoryName,
-  categoryTaskCount: 10,
-  categoryTaskCompletedCount: 7,
-}));
+const DEFAULT_COLOURS: Record<DefaultCategory, number> = {
+  [DefaultCategory.FINANCIAL]: 0x66bb6a,
+  [DefaultCategory.HEALTH]: 0x03a9f4,
+  [DefaultCategory.HOME]: 0xff9800,
+  [DefaultCategory.PERSONAL]: 0xffeb3b,
+  [DefaultCategory.WORK]: 0xec05ff,
+};
+
+export type CategoryId = string;
+
+export interface CategoryBase {
+  id: CategoryId;
+  name: string;
+  colour: number;
+  taskIds: TaskId[];
+}
+
+export interface Category extends CategoryBase {
+  taskCount: number;
+  taskDoneCount: number;
+}
+
+export const dummyCategories: CategoryBase[] = Object.values(DefaultCategory).map(
+  (categoryName) => ({
+    id: uuidv4(),
+    name: categoryName,
+    colour: DEFAULT_COLOURS[categoryName],
+    taskIds: [],
+  }),
+);
