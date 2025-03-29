@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import './App.css';
-import { Category } from './categories';
+import { Category, CategoryId } from './categories';
 import CategoryPicker from './components/CategoryPicker';
 import TaskList from './components/TaskList';
 import Title from './components/Title';
@@ -10,8 +10,9 @@ import { getCateogries, getTasks } from './data';
 import { Task } from './tasks';
 
 function App() {
-  const [tasks, setTasks] = useState<Task[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
+  const [selectedCategories, setSelectedCategories] = useState<CategoryId[]>([]);
+  const [tasks, setTasks] = useState<Task[]>([]);
 
   useEffect(() => {
     setTasks(getTasks());
@@ -22,8 +23,16 @@ function App() {
     <div className="App">
       <TopNav></TopNav>
       <Title></Title>
-      <CategoryPicker categories={categories}></CategoryPicker>
-      <TaskList categories={categories} tasks={tasks}></TaskList>
+      <CategoryPicker
+        categories={categories}
+        selectedCategories={selectedCategories}
+        setSelectedCategories={setSelectedCategories}
+      ></CategoryPicker>
+      <TaskList
+        categories={categories}
+        selectedCategories={selectedCategories}
+        tasks={tasks}
+      ></TaskList>
     </div>
   );
 }

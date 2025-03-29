@@ -1,30 +1,37 @@
 import { useEffect, useRef, useState } from 'react';
-import { Category } from '../categories.ts';
+
+import { Category, CategoryId } from '../categories.ts';
 import styles from '../styles/CategoryPicker.module.css';
 import CategoryCard from './CategoryCard';
 
 interface Props {
   categories: Category[];
+  selectedCategories: CategoryId[];
+  setSelectedCategories: React.Dispatch<React.SetStateAction<CategoryId[]>>;
 }
 
 const MASK_MAX_WIDTH: number = 16;
 
-const CategoryPicker = ({ categories }: Props) => {
+const CategoryPicker = ({ categories, selectedCategories, setSelectedCategories }: Props) => {
   const pickerListRef = useRef<HTMLDivElement>(null);
   const [leftMaskWidth, setLeftMaskWidth] = useState(0);
   const [rightMaskWidth, setRightMaskWidth] = useState(MASK_MAX_WIDTH);
+  const toggleSelected = (categoryIdToToggle: CategoryId) => {
+    setSelectedCategories((previousSelectedCategories: CategoryId[]) =>
+      previousSelectedCategories.includes(categoryIdToToggle)
+        ? previousSelectedCategories.filter((categoryId) => categoryId !== categoryIdToToggle)
+        : [...previousSelectedCategories, categoryIdToToggle],
+    );
+  };
 
   useEffect(() => {
     const pickerListDiv = pickerListRef.current;
 
     if (pickerListDiv) {
-      const maxScrollLeft =
-        pickerListDiv.scrollWidth - pickerListDiv.clientWidth;
+      const maxScrollLeft = pickerListDiv.scrollWidth - pickerListDiv.clientWidth;
       const handleScroll = () => {
         setLeftMaskWidth(Math.min(MASK_MAX_WIDTH, pickerListDiv.scrollLeft));
-        setRightMaskWidth(
-          Math.min(MASK_MAX_WIDTH, maxScrollLeft - pickerListDiv.scrollLeft),
-        );
+        setRightMaskWidth(Math.min(MASK_MAX_WIDTH, maxScrollLeft - pickerListDiv.scrollLeft));
       };
       pickerListDiv.addEventListener('scroll', handleScroll);
 
@@ -40,7 +47,12 @@ const CategoryPicker = ({ categories }: Props) => {
       <div className={styles.categoryPickerListContainer}>
         <div className={styles.categoryPickerList} ref={pickerListRef}>
           {categories.map((category: Category) => (
-            <CategoryCard key={category.id} category={category}></CategoryCard>
+            <CategoryCard
+              key={category.id}
+              category={category}
+              isSelected={selectedCategories.includes(category.id)}
+              toggleSelected={toggleSelected}
+            ></CategoryCard>
           ))}
         </div>
         <div

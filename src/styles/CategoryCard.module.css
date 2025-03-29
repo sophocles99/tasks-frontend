@@ -8,8 +8,13 @@
   height: 112px;
   padding: 1rem;
   border-radius: 2rem;
+  border: 1px solid var(--surface-colour);
   background-color: var(--surface-colour);
   color: var(--primary-colour);
+}
+
+.categorySelected {
+  border-color: var(--primary-colour)
 }
 
 .categoryTaskCount {
