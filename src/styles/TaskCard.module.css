@@ -15,17 +15,22 @@
   width: 4.5rem;
 }
 
-.icons {
+.taskStatusIcon {
   font-size: 2rem;
 }
 
-.taskName {
+.taskNameContainer {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  min-width: 0;
+  padding-right: 1rem;
   font-size: 1.25rem;
-  overflow: hidden;
-  text-overflow: ellipsis; /* Not working */
-  white-space: nowrap;
   color: var(--primary-colour);
+}
+
+.taskNameText {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }

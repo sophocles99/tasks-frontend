@@ -18,13 +18,15 @@ const TaskCard = ({ categoryColour, task }: Props) => {
     <div className={styles.taskCard}>
       <div className={styles.taskStatusContainer}>
         <span
-          className={`material-symbols-outlined ${styles.icons}`}
+          className={`material-symbols-outlined ${styles.taskStatusIcon}`}
           style={{ color: cssCategoryColour }}
         >
           {statusIcons[task.status]}
         </span>
       </div>
-      <div className={styles.taskName}>{task.name}</div>
+      <div className={styles.taskNameContainer}>
+        <span className={styles.taskNameText}>{task.name}</span>
+      </div>
     </div>
   );
 };
