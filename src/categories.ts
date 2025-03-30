@@ -19,10 +19,12 @@ const DEFAULT_COLOURS: Record<DefaultCategory, number> = {
 
 export type CategoryId = string;
 
+export type CategoryColour = number | undefined
+
 export interface CategoryBase {
   id: CategoryId;
   name: string;
-  colour: number;
+  colour: CategoryColour;
   taskIds: TaskId[];
 }
 

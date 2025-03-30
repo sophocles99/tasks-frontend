@@ -1,8 +1,9 @@
+import { CategoryColour } from '../categories';
 import styles from '../styles/TaskCard.module.css';
 import { Task, TaskStatus } from '../tasks';
 
 interface Props {
-  categoryColour: number;
+  categoryColour: CategoryColour;
   task: Task;
 }
 
@@ -13,13 +14,16 @@ const statusIcons: Record<TaskStatus, string> = {
 };
 
 const TaskCard = ({ categoryColour, task }: Props) => {
-  const cssCategoryColour = `#${categoryColour.toString(16).padStart(6, '0')}`;
+  const cssCategoryColour = categoryColour
+    ? `#${categoryColour.toString(16).padStart(6, '0')}`
+    : '';
+
   return (
     <div className={styles.taskCard}>
       <div className={styles.taskStatusContainer}>
         <span
           className={`material-symbols-outlined ${styles.taskStatusIcon}`}
-          style={{ color: cssCategoryColour }}
+          style={cssCategoryColour ? { color: cssCategoryColour } : {}}
         >
           {statusIcons[task.status]}
         </span>

@@ -1,4 +1,4 @@
-import { Category, CategoryId } from '../categories';
+import { Category, CategoryColour, CategoryId } from '../categories';
 import styles from '../styles/TaskList.module.css';
 import { Task } from '../tasks';
 import TaskCard from './TaskCard';
@@ -8,8 +8,6 @@ interface Props {
   selectedCategories: CategoryId[];
   tasks: Task[];
 }
-
-const DEFAULT_CATEGORY_COLOUR = 0xffffff;
 
 const TaskList = ({ categories, selectedCategories, tasks }: Props) => {
   const tasksToDisplay: Task[] = selectedCategories.length
@@ -23,9 +21,13 @@ const TaskList = ({ categories, selectedCategories, tasks }: Props) => {
       <div className={styles.taskListTitle}>tasks</div>
       <div className={styles.taskList}>
         {tasksToDisplay.map((task) => {
-          const categoryColour =
-            categories.find((category) => category.id == task.categoryIds[0])?.colour ??
-            DEFAULT_CATEGORY_COLOUR;
+          {
+            /* Currently uses colour of first category in task.CateogryIds. Consider creating a primaryCategoryId field */
+          }
+          const primaryCategoryId = task.categoryIds[0];
+          const categoryColour: CategoryColour = primaryCategoryId
+            ? categories.find((category) => category.id === primaryCategoryId)?.colour
+            : undefined;
           return <TaskCard categoryColour={categoryColour} key={task.id} task={task}></TaskCard>;
         })}
       </div>
