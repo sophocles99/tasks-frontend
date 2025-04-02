@@ -1,11 +1,15 @@
-import styles from "../styles/Title.module.css";
+import { ReactNode } from 'react';
 
-const Title = () => {
-  const now = new Date();
+import styles from '../styles/Title.module.css';
+
+interface Props {
+  children: ReactNode;
+  isMainPage: boolean;
+}
+
+const Title = ({ children, isMainPage }: Props) => {
   return (
-    <div className={styles.title}>
-      {Intl.DateTimeFormat("en-GB", { weekday: "long" }).format(now)}
-    </div>
+    <div className={`${styles.title} ${isMainPage ? styles.mainPageTitle : ''}`}>{children}</div>
   );
 };
 

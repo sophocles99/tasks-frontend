@@ -1,38 +1,18 @@
-import { useEffect, useState } from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router';
 
 import './App.css';
-import { Category, CategoryId } from './categories';
-import CategoryPicker from './components/CategoryPicker';
-import TaskList from './components/TaskList';
-import Title from './components/Title';
-import TopNav from './components/TopNav';
-import { getCateogries, getTasks } from './data';
-import { Task } from './tasks';
+import Main from './pages/Main';
+import Register from './pages/Register';
 
 function App() {
-  const [categories, setCategories] = useState<Category[]>([]);
-  const [selectedCategories, setSelectedCategories] = useState<CategoryId[]>([]);
-  const [tasks, setTasks] = useState<Task[]>([]);
-
-  useEffect(() => {
-    setTasks(getTasks());
-    setCategories(getCateogries());
-  }, []);
-
   return (
     <div className="App">
-      <TopNav />
-      <Title />
-      <CategoryPicker
-        categories={categories}
-        selectedCategories={selectedCategories}
-        setSelectedCategories={setSelectedCategories}
-      ></CategoryPicker>
-      <TaskList
-        categories={categories}
-        selectedCategories={selectedCategories}
-        tasks={tasks}
-      ></TaskList>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Main />} />
+          <Route path="/register" element={<Register />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
