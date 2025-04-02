@@ -28,8 +28,8 @@ const CategoryPicker = ({ categories, selectedCategories, setSelectedCategories 
     const pickerListDiv = pickerListRef.current;
 
     if (pickerListDiv) {
-      const maxScrollLeft = pickerListDiv.scrollWidth - pickerListDiv.clientWidth;
       const handleScroll = () => {
+        const maxScrollLeft = pickerListDiv.scrollWidth - pickerListDiv.clientWidth;
         setLeftMaskWidth(Math.min(MASK_MAX_WIDTH, pickerListDiv.scrollLeft));
         setRightMaskWidth(Math.min(MASK_MAX_WIDTH, maxScrollLeft - pickerListDiv.scrollLeft));
       };
