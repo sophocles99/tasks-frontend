@@ -21,8 +21,8 @@ function App() {
 
   return (
     <div className="App">
-      <TopNav></TopNav>
-      <Title></Title>
+      <TopNav />
+      <Title />
       <CategoryPicker
         categories={categories}
         selectedCategories={selectedCategories}
