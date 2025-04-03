@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 
 import { Category, CategoryColour, CategoryId } from '../categories';
 import styles from '../styles/TaskList.module.css';
+import shared_styles from '../styles/shared_styles.module.css';
 import { Task } from '../tasks';
 import TaskCard from './TaskCard';
 
@@ -43,7 +44,7 @@ const TaskList = ({ categories, selectedCategories, tasks }: Props) => {
 
   return (
     <>
-      <div className={styles.taskListTitle}>tasks</div>
+      <div className={shared_styles.secondaryText}>tasks</div>
       <div className={styles.taskListContainer}>
         <div className={styles.taskList} ref={taskListRef}>
           {tasksToDisplay.map((task) => {
