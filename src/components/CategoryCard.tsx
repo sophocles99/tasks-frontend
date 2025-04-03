@@ -19,7 +19,7 @@ const CategoryCard = ({
     return Math.min(percentage, 100);
   };
   const progressPercentage = calculateProgressPercentage();
-  const progressBarIndicatorColour = `#${colour.toString(16).padStart(6, '0')}`;
+  const progressBarIndicatorColour = colour ? `#${colour.toString(16).padStart(6, '0')}` : '';
 
   return (
     <div
@@ -35,7 +35,7 @@ const CategoryCard = ({
           className={styles.categoryProgressBarIndicator}
           style={{
             width: `${progressPercentage}%`,
-            backgroundColor: progressBarIndicatorColour,
+            backgroundColor: progressBarIndicatorColour ?? '',
           }}
         ></div>
       </div>
