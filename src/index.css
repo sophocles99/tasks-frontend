@@ -1,10 +1,17 @@
 * {
   box-sizing: border-box;
-  font-family: Roboto, Arial, Helvetica Neue, Segoe UI, Verdana, sans-serif;
+  font-family:
+    Roboto,
+    Arial,
+    Helvetica Neue,
+    Segoe UI,
+    Verdana,
+    sans-serif;
 }
 
 #root {
   --background-colour: #3450a1;
+  --highlight-colour: #ec05ff;
   --primary-colour: #ffffff;
   --secondary-colour: #97b4ff;
   --surface-colour: #041955;
