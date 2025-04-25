@@ -1,0 +1,9 @@
+{
+  "importOrder": ["^react$", "^[a-zA-Z\\-]+$", "^@/(.*)$", "^[./]"],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true,
+  "plugins": ["@trivago/prettier-plugin-sort-imports"],
+  "printWidth": 100,
+  "singleQuote": true,
+  "tabWidth": 2
+}

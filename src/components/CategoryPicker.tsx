@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 
 import { Category, CategoryId } from '../categories.ts';
 import styles from '../styles/CategoryPicker.module.css';
-import shared_styles from '../styles/shared_styles.module.css'
+import shared_styles from '../styles/shared_styles.module.css';
 import CategoryCard from './CategoryCard';
 
 interface Props {

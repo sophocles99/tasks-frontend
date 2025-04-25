@@ -17,7 +17,7 @@
 
 .taskStatusIcon {
   font-size: 2rem;
-  color: var(--surface-secondary)  /* Default colour, which will be overriden in most cases */
+  color: var(--surface-secondary); /* Default colour, which will be overriden in most cases */
 }
 
 .taskNameContainer {

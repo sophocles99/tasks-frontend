@@ -14,7 +14,7 @@
 }
 
 .categorySelected {
-  border-color: var(--primary-colour)
+  border-color: var(--primary-colour);
 }
 
 .categoryTaskCount {

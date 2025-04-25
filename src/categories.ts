@@ -1,4 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
+
 import { TaskId } from './tasks';
 
 enum DefaultCategory {
@@ -19,7 +20,7 @@ const DEFAULT_COLOURS: Record<DefaultCategory, number> = {
 
 export type CategoryId = string;
 
-export type CategoryColour = number | undefined
+export type CategoryColour = number | undefined;
 
 export interface CategoryBase {
   id: CategoryId;
