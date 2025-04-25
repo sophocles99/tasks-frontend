@@ -2,7 +2,7 @@
   {
     "name": "Pay quarterly taxes",
     "description": "Submit estimated tax payment for Q1 before the deadline.",
-    "categories": []
+    "categories": ["financial"]
   },
   {
     "name": "Morning jog",

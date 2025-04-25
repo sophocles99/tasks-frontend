@@ -1,12 +1,4 @@
-.title {
-  flex-shrink: 0;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  font-size: 40px;
-  font-weight: 600;
-  color: var(--primary-colour);
-}
+
 
 .secondaryText {
   flex-shrink: 0;

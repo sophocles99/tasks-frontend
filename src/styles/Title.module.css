@@ -1,0 +1,16 @@
+.title {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  font-size: 40px;
+  font-weight: 600;
+  color: var(--primary-colour);
+}
+
+.mainTitle {
+  align-items: flex-start;
+}
