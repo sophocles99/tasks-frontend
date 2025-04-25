@@ -4,6 +4,7 @@ import AuthForm from '../components/AuthForm';
 import InputTextBox from '../components/InputTextBox';
 import SubmitButton from '../components/SubmitButton';
 import Title from '../components/Title';
+import styles from '../styles/Register.module.css';
 import shared_styles from '../styles/shared_styles.module.css';
 
 interface FormData {
@@ -32,7 +33,7 @@ const RegisterPage = () => {
   };
 
   return (
-    <>
+    <main className={styles.registerPageContainer}>
       <Title addDay={false} isMain={false}>
         Let's get organised!
       </Title>
@@ -66,7 +67,7 @@ const RegisterPage = () => {
         />
         <SubmitButton>sign up</SubmitButton>
       </AuthForm>
-    </>
+    </main>
   );
 };
 

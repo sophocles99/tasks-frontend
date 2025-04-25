@@ -5,7 +5,7 @@ export const getTasks = () => {
   return dummyTasks;
 };
 
-export const getCateogries = () => {
+export const getCategories = () => {
   const dummyCategoriesWithTaskData: Category[] = dummyCategories.map((category) => {
     const tasksInCategory = dummyTasks.filter((task) => task.categoryIds.includes(category.id));
     const tasksDoneInCategory = tasksInCategory.filter((task) => task.status == TaskStatus.Done);

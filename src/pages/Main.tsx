@@ -5,7 +5,7 @@ import CategoryPicker from '../components/CategoryPicker';
 import TaskList from '../components/TaskList';
 import Title from '../components/Title';
 import TopNav from '../components/TopNav';
-import { getCateogries, getTasks } from '../data';
+import { getCategories, getTasks } from '../data';
 import { Task } from '../tasks';
 
 const Main = () => {
@@ -15,7 +15,7 @@ const Main = () => {
 
   useEffect(() => {
     setTasks(getTasks());
-    setCategories(getCateogries());
+    setCategories(getCategories());
   }, []);
 
   return (
