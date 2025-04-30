@@ -2,8 +2,8 @@ import { useEffect, useRef, useState } from 'react';
 
 import { Category, CategoryId } from '../categories.ts';
 import styles from '../styles/CategoryPicker.module.css';
-import shared_styles from '../styles/shared_styles.module.css';
 import CategoryCard from './CategoryCard';
+import Subtitle from './Subtitle.tsx';
 
 interface Props {
   categories: Category[];
@@ -44,7 +44,7 @@ const CategoryPicker = ({ categories, selectedCategories, setSelectedCategories 
 
   return (
     <>
-      <div className={shared_styles.secondaryText}>categories</div>
+      <Subtitle>categories</Subtitle>
       <div className={styles.categoryPickerListContainer}>
         <div className={styles.categoryPickerList} ref={pickerListRef}>
           {categories.map((category: Category) => (

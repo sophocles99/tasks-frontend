@@ -3,9 +3,9 @@ import { FormEventHandler, useState } from 'react';
 import AuthForm from '../components/AuthForm';
 import InputTextBox from '../components/InputTextBox';
 import SubmitButton from '../components/SubmitButton';
+import Subtitle from '../components/Subtitle';
 import Title from '../components/Title';
 import styles from '../styles/Register.module.css';
-import shared_styles from '../styles/shared_styles.module.css';
 
 interface FormData {
   email: string;
@@ -37,12 +37,7 @@ const RegisterPage = () => {
       <Title addDay={false} isMain={false}>
         Let's get organised!
       </Title>
-      <div
-        className={`${shared_styles.secondaryText}`}
-        style={{ alignItems: 'center', height: '7.75rem' }}
-      >
-        sign up to get started
-      </div>
+      <Subtitle>sign up to get started</Subtitle>
       <AuthForm onSubmit={handleSubmit}>
         <InputTextBox
           name="email"
