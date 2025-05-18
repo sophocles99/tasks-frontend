@@ -15,10 +15,11 @@ export const isValidEmail = (email: string): boolean => {
 };
 
 export const passwordChecks: PasswordCheck[] = [
+  { regex: /^.{10,}$/, errorMessage: 'please include at least ten characters in your password' },
   {
     regex: /[A-Z]/,
-    errorMessage: 'password must include at least one capital letter',
+    errorMessage: 'please include at least one capital letter in your password',
   },
-  { regex: /[a-z]/, errorMessage: 'password must include at least one small letter' },
-  { regex: /\d/, errorMessage: 'password must include at least one number' },
+  { regex: /[a-z]/, errorMessage: 'please include at least one small letter in your password' },
+  { regex: /\d/, errorMessage: 'please include at least one number in your password' },
 ];
