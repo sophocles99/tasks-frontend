@@ -3,12 +3,17 @@ import { ReactNode } from 'react';
 import styles from '../styles/SubmitButton.module.css';
 
 interface Props {
+  active: boolean;
   children: ReactNode;
 }
 
-const SubmitButton = ({ children }: Props) => {
+const SubmitButton = ({ active, children }: Props) => {
   return (
-    <button className={styles.submitButton} type="submit">
+    <button
+      className={`${styles.submitButton} ${active ? '' : styles.inactive}`}
+      disabled={!active}
+      type="submit"
+    >
       {children}
     </button>
   );

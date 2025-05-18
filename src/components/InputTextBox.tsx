@@ -1,21 +1,25 @@
-import { ChangeEvent } from 'react';
+import { ChangeEventHandler, FocusEventHandler } from 'react';
 
 import styles from '../styles/InputTextBox.module.css';
 
 interface Props {
   name: string;
-  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
+  blurHandler?: FocusEventHandler<HTMLInputElement>;
+  changeHandler: ChangeEventHandler<HTMLInputElement>;
+  focusHandler?: FocusEventHandler<HTMLInputElement>;
   placeholder: string;
   type: 'email' | 'password';
   value: string;
 }
 
-const InputTextBox = ({ name, onChange, placeholder, type, value }: Props) => {
+const InputTextBox = ({ name, blurHandler, changeHandler, focusHandler, placeholder, type, value }: Props) => {
   return (
     <input
       className={styles.inputTextBox}
       name={name}
-      onChange={onChange}
+      onBlur={blurHandler}
+      onChange={changeHandler}
+      onFocus={focusHandler}
       placeholder={placeholder}
       type={type}
       value={value}
