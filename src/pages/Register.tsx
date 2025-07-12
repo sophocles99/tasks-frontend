@@ -18,8 +18,6 @@ const RegisterPage = () => {
     event.preventDefault();
   };
 
-  console.log(JSON.stringify(formState, null, 2));
-
   return (
     <main className={styles.registerPageContainer}>
       <Title addDay={false} isMain={false}>
