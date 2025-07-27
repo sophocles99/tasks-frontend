@@ -27,8 +27,6 @@ const RegisterPage = () => {
     setIsPending(false);
     
     if (result.isSuccess) {
-      console.log('Registration successful:');
-      console.log(JSON.stringify(result.user, null, 2));
       setCurrentUser(result.user);
       navigate('/');
     } else {

@@ -2,7 +2,7 @@ import retry from 'async-retry';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
-interface UserCreateResponseApi {
+interface UserCreateApiResponse {
   access_token: string;
   email: string;
   first_name?: string;
@@ -37,7 +37,7 @@ const registerUser = async (email: string, password: string): Promise<RegisterUs
       }
 
       console.log(`User ${email} registered successfully.`);
-      const responseBody: UserCreateResponseApi = await response.json();
+      const responseBody: UserCreateApiResponse = await response.json();
       return {
         accessToken: responseBody.access_token,
         email: responseBody.email,
