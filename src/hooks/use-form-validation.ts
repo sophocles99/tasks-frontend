@@ -29,14 +29,14 @@ const validators: Record<FormField, Validator> = {
   },
 };
 
-export const validateField = (field: FormField, value: string, formState: IFormState) => {
+export const validateField = (field: FormField, value: string, formState: FormState) => {
   return validators[field](value, formState);
 };
 
 const getDisplayErrorMessage = (
   formFieldOrder: FormField[],
   activeField: FormField | null,
-  formState: IFormState,
+  formState: FormState,
 ): ErrorMessage => {
   if (activeField) {
     const activeFieldState = formState[activeField];
@@ -56,7 +56,7 @@ const getDisplayErrorMessage = (
 };
 
 export const useFormValidation = (formFieldOrder: FormField[]) => {
-  const [formState, setFormState] = useState<IFormState>({
+  const [formState, setFormState] = useState<FormState>({
     email: { value: '', isValid: null, errorMessage: '', hasBeenValid: false },
     password: { value: '', isValid: null, errorMessage: '', hasBeenValid: false },
     confirmPassword: { value: '', isValid: null, errorMessage: '', hasBeenValid: false },

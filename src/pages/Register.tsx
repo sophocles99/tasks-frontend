@@ -1,21 +1,37 @@
-import { FormEventHandler } from 'react';
-
+import { FormEventHandler, useState } from 'react';
+import { useNavigate } from 'react-router';
+import registerUser from '../api/register-user';
 import AuthForm from '../components/AuthForm';
 import InputTextBox from '../components/InputTextBox';
 import SubmitButton from '../components/SubmitButton';
 import Subtitle from '../components/Subtitle';
 import Title from '../components/Title';
-import { useFormValidation } from '../hooks/useFormValidation';
+import { useAuth } from '../hooks/use-auth';
+import { useFormValidation } from '../hooks/use-form-validation';
 import styles from '../styles/Register.module.css';
 
 const formFieldOrder: FormField[] = ['email', 'password', 'confirmPassword'];
 
 const RegisterPage = () => {
+  const { setCurrentUser } = useAuth();
+  const navigate = useNavigate();
   const { displayErrorMesssage, formState, handleFormDataChange, handleBlur, handleFocus } =
     useFormValidation(formFieldOrder);
+  const [isPending, setIsPending] = useState(false);
 
-  const handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
+  const handleSubmit: FormEventHandler<HTMLFormElement> = async (event) => {
     event.preventDefault();
+
+    setIsPending(true);
+    const result = await registerUser(formState.email.value, formState.password.value);
+    setIsPending(false);
+    
+    if (result.isSuccess) {
+      setCurrentUser(result.user);
+      navigate('/');
+    } else {
+      console.error('Registration failed:', result.errorMessage);
+    }
   };
 
   return (
@@ -53,7 +69,7 @@ const RegisterPage = () => {
           value={formState.confirmPassword.value}
         />
         <SubmitButton active={Object.values(formState).every((fieldState) => fieldState.isValid)}>
-          sign up
+          {isPending ? 'signing up...' : 'sign up'}
         </SubmitButton>
       </AuthForm>
       <Subtitle>{displayErrorMesssage}</Subtitle>

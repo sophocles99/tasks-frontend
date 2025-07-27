@@ -7,19 +7,27 @@ type ValidationResult = boolean | null;
 
 type ErrorMessage = string;
 
-interface IFieldState {
+interface FieldState {
   value: string;
   isValid: ValidationResult;
   errorMessage: ErrorMessage;
   hasBeenValid: boolean;
 }
 
-interface IFormState {
-  email: IFieldState;
-  password: IFieldState;
-  confirmPassword: IFieldState;
+interface FormState {
+  email: FieldState;
+  password: FieldState;
+  confirmPassword: FieldState;
 }
 
-type FormField = keyof IFormState;
+type FormField = keyof FormState;
 
-type Validator = (value: string, formState: IFormState) => [ValidationResult, ErrorMessage];
+type Validator = (value: string, formState: FormState) => [ValidationResult, ErrorMessage];
+
+type User = {
+  accessToken: string;
+  email: string;
+  firstName?: string;
+  id: string;
+  lastName?: string;
+};
