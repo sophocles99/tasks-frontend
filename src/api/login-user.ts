@@ -2,7 +2,7 @@ import retry from 'async-retry';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
-interface UserCreateApiResponse {
+interface LoginUserApiResponse {
   access_token: string;
   email: string;
   first_name?: string;
@@ -11,25 +11,27 @@ interface UserCreateApiResponse {
   token_type: string;
 }
 
-type RegisterUserResult =
+type LoginResult =
   | { isSuccess: true; user: User; errorMessage?: never }
   | { isSuccess: false; user?: never; errorMessage: string };
 
-const registerUser = async (email: string, password: string): Promise<RegisterUserResult> => {
-  const requestBody = { email, password };
+const loginUser = async (email: string, password: string): Promise<LoginResult> => {
+  const formData = new URLSearchParams();
+  formData.append('username', email);
+  formData.append('password', password);
 
   try {
     const user = await retry(async (bail, attempt) => {
-      console.log(`Registering user. Attempt: ${attempt}.`);
-      const response = await fetch(`${API_BASE_URL}/users`, {
-        body: JSON.stringify(requestBody),
-        headers: { 'content-type': 'application/json' },
+      console.log(`Logging in user. Attempt: ${attempt}.`);
+      const response = await fetch(`${API_BASE_URL}/auth/login`, {
+        body: formData.toString(),
+        headers: { 'content-type': 'application/x-www-form-urlencoded' },
         method: 'POST',
       });
 
       if (!response.ok) {
         if (response.status >= 400 && response.status < 500) {
-          const errorMessage = response.status === 409 ? 'Email already in use' : `Registration unsuccessful`;
+          const errorMessage = response.status === 401 ? 'Invalid email or password' : 'Login unsuccessful';
           console.error(`${errorMessage} Status: ${response.status}`);
           bail(new Error(errorMessage));
         }
@@ -37,8 +39,8 @@ const registerUser = async (email: string, password: string): Promise<RegisterUs
         throw new Error('Server error - please try again later');
       }
 
-      console.log(`User ${email} registered successfully.`);
-      const responseBody: UserCreateApiResponse = await response.json();
+      console.log(`User ${email} logged in successfully.`);
+      const responseBody: LoginUserApiResponse = await response.json();
       return {
         accessToken: responseBody.access_token,
         email: responseBody.email,
@@ -50,12 +52,12 @@ const registerUser = async (email: string, password: string): Promise<RegisterUs
 
     return { isSuccess: true, user };
   } catch (error) {
-    console.error('Error registering user:', error);
+    console.error('Error logging in user:', error);
     return {
       isSuccess: false,
-      errorMessage: error instanceof Error ? error.message : 'Registration unsuccessful',
+      errorMessage: error instanceof Error ? error.message : 'Login unsuccessful',
     };
   }
 };
 
-export default registerUser;
+export default loginUser;

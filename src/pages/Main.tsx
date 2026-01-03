@@ -7,16 +7,21 @@ import Title from '../components/Title';
 import TopNav from '../components/TopNav';
 import { getCategories, getTasks } from '../data';
 import { Task } from '../tasks';
+import { useAuth } from '../hooks/use-auth';
 
 const Main = () => {
   const [categories, setCategories] = useState<Category[]>([]);
   const [selectedCategories, setSelectedCategories] = useState<CategoryId[]>([]);
   const [tasks, setTasks] = useState<Task[]>([]);
 
+  console.log(useAuth())
+
   useEffect(() => {
     setTasks(getTasks());
     setCategories(getCategories());
   }, []);
+
+  console.log({ categories, selectedCategories, tasks });
 
   return (
     <>

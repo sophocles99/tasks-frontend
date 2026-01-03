@@ -10,4 +10,5 @@
   letter-spacing: 0.1rem;
   text-transform: uppercase;
   text-align: center;
+  white-space: pre-line;
 }
