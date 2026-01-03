@@ -18,20 +18,19 @@ const RegistrationSuccess = () => {
   const navigate = useNavigate();
   const [timeRemaining, setTimeRemaining] = useState(TIME_BEFORE_NAVIGATION);
 
-  const decrementTimerOrNavigate = () => {
-    setTimeRemaining((previousTimeRemaining) => {
-      if (previousTimeRemaining <= 0) {
-        console.log('Navigating to main page');
-        navigate('/');
-        return 0;
-      } else {
-        return previousTimeRemaining - TIME_STEP_MS;
-      }
-    });
+  const decrementTimer = () => {
+    setTimeRemaining((previousTimeRemaining) => previousTimeRemaining - TIME_STEP_MS);
   };
 
   useEffect(() => {
-    const intervalId = setInterval(decrementTimerOrNavigate, TIME_STEP_MS);
+    if (timeRemaining <= 0) {
+      console.log('Navigating to main page');
+      navigate('/');
+    }
+  }, [timeRemaining]);
+
+  useEffect(() => {
+    const intervalId = setInterval(decrementTimer, TIME_STEP_MS);
     return () => {
       clearInterval(intervalId);
     };
@@ -54,10 +53,7 @@ const RegistrationSuccess = () => {
             status: TaskStatus.Done,
           }}
         ></TaskCard>
-        <PrimaryButton
-          active={true}
-          indicatorBarPercentageWidth={(timeRemaining / TIME_BEFORE_NAVIGATION) * 100}
-        >
+        <PrimaryButton active={true} indicatorBarPercentageWidth={(timeRemaining / TIME_BEFORE_NAVIGATION) * 100}>
           Continue
         </PrimaryButton>
       </section>
