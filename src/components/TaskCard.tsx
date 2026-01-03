@@ -3,7 +3,7 @@ import styles from '../styles/TaskCard.module.css';
 import { Task, TaskStatus } from '../tasks';
 
 interface Props {
-  categoryColour: CategoryColour;
+  categoryColour?: CategoryColour;
   task: Task;
 }
 

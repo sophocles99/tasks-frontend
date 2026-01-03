@@ -14,15 +14,15 @@ interface FieldState {
   hasBeenValid: boolean;
 }
 
-interface FormState {
+interface RegistrationFormState {
   email: FieldState;
   password: FieldState;
   confirmPassword: FieldState;
 }
 
-type FormField = keyof FormState;
+type RegistrationFormField = keyof RegistrationFormState;
 
-type Validator = (value: string, formState: FormState) => [ValidationResult, ErrorMessage];
+type Validator = (value: string, formState: RegistrationFormState) => [ValidationResult, ErrorMessage];
 
 type User = {
   accessToken: string;

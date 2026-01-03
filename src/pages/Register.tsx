@@ -1,22 +1,23 @@
 import { FormEventHandler, useState } from 'react';
+
 import { useNavigate } from 'react-router';
+
 import registerUser from '../api/register-user';
 import AuthForm from '../components/AuthForm';
 import InputTextBox from '../components/InputTextBox';
-import SubmitButton from '../components/SubmitButton';
+import PrimaryButton from '../components/PrimaryButton';
 import Subtitle from '../components/Subtitle';
 import Title from '../components/Title';
 import { useAuth } from '../hooks/use-auth';
-import { useFormValidation } from '../hooks/use-form-validation';
-import styles from '../styles/Register.module.css';
+import { useValidateRegistrationForm } from '../hooks/use-validate-registration-form';
+import styles from '../styles/AuthForm.module.css';
 
-const formFieldOrder: FormField[] = ['email', 'password', 'confirmPassword'];
-
-const RegisterPage = () => {
-  const { setCurrentUser } = useAuth();
+const Register = () => {
   const navigate = useNavigate();
-  const { displayErrorMesssage, formState, handleFormDataChange, handleBlur, handleFocus } =
-    useFormValidation(formFieldOrder);
+  const { setCurrentUser } = useAuth();
+  const { validationErrorMessage, formState, handleFormDataChange, handleBlur, handleFocus } =
+    useValidateRegistrationForm();
+  const [errorMessage, setErrorMessage] = useState('');
   const [isPending, setIsPending] = useState(false);
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = async (event) => {
@@ -25,17 +26,18 @@ const RegisterPage = () => {
     setIsPending(true);
     const result = await registerUser(formState.email.value, formState.password.value);
     setIsPending(false);
-    
+
     if (result.isSuccess) {
       setCurrentUser(result.user);
-      navigate('/');
+      navigate('/registration-success');
     } else {
       console.error('Registration failed:', result.errorMessage);
+      setErrorMessage(result.errorMessage);
     }
   };
 
   return (
-    <main className={styles.registerPageContainer}>
+    <main className={styles.authFormPageContainer}>
       <Title addDay={false} isMain={false}>
         Let's get organised!
       </Title>
@@ -68,13 +70,13 @@ const RegisterPage = () => {
           type="password"
           value={formState.confirmPassword.value}
         />
-        <SubmitButton active={Object.values(formState).every((fieldState) => fieldState.isValid)}>
+        <PrimaryButton active={Object.values(formState).every((fieldState) => fieldState.isValid)}>
           {isPending ? 'signing up...' : 'sign up'}
-        </SubmitButton>
+        </PrimaryButton>
       </AuthForm>
-      <Subtitle>{displayErrorMesssage}</Subtitle>
+      <Subtitle>{errorMessage || validationErrorMessage}</Subtitle>
     </main>
   );
 };
 
-export default RegisterPage;
+export default Register;

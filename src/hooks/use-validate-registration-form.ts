@@ -1,5 +1,6 @@
 import { ChangeEvent, FocusEventHandler, useState } from 'react';
 
+const formFields: RegistrationFormField[] = ['email', 'password', 'confirmPassword'];
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const isValidEmail = (email: string): boolean => {
@@ -7,18 +8,17 @@ const isValidEmail = (email: string): boolean => {
 };
 
 const passwordChecks: PasswordCheck[] = [
-  { regex: /^.{10,}$/, errorMessage: 'please include at least ten characters in your password' },
+  { regex: /^.{8,}$/, errorMessage: 'please include at least eight characters in your password' },
   {
     regex: /[A-Z]/,
     errorMessage: 'please include at least one capital letter in your password',
   },
-  { regex: /[a-z]/, errorMessage: 'please include at least one small letter in your password' },
+  { regex: /[a-z]/, errorMessage: 'please include at least one lowercase letter in your password' },
   { regex: /\d/, errorMessage: 'please include at least one number in your password' },
 ];
 
-const validators: Record<FormField, Validator> = {
-  email: (value) =>
-    isValidEmail(value) ? [true, ''] : [false, 'please enter a valid email address'],
+const validators: Record<RegistrationFormField, Validator> = {
+  email: (value) => (isValidEmail(value) ? [true, ''] : [false, 'please enter a valid email address']),
   password: (value) => {
     const failedCheck = passwordChecks.find((check) => !check.regex.test(value));
     return failedCheck ? [false, failedCheck.errorMessage] : [true, ''];
@@ -29,14 +29,14 @@ const validators: Record<FormField, Validator> = {
   },
 };
 
-export const validateField = (field: FormField, value: string, formState: FormState) => {
+export const validateField = (field: RegistrationFormField, value: string, formState: RegistrationFormState) => {
   return validators[field](value, formState);
 };
 
 const getDisplayErrorMessage = (
-  formFieldOrder: FormField[],
-  activeField: FormField | null,
-  formState: FormState,
+  formFieldOrder: RegistrationFormField[],
+  activeField: RegistrationFormField | null,
+  formState: RegistrationFormState,
 ): ErrorMessage => {
   if (activeField) {
     const activeFieldState = formState[activeField];
@@ -55,18 +55,18 @@ const getDisplayErrorMessage = (
   return displayErrorMessageField ? formState[displayErrorMessageField].errorMessage : '';
 };
 
-export const useFormValidation = (formFieldOrder: FormField[]) => {
-  const [formState, setFormState] = useState<FormState>({
+export const useValidateRegistrationForm = () => {
+  const [formState, setFormState] = useState<RegistrationFormState>({
     email: { value: '', isValid: null, errorMessage: '', hasBeenValid: false },
     password: { value: '', isValid: null, errorMessage: '', hasBeenValid: false },
     confirmPassword: { value: '', isValid: null, errorMessage: '', hasBeenValid: false },
   });
-  const [activeField, setActiveField] = useState<FormField | null>(null);
-  const displayErrorMesssage = getDisplayErrorMessage(formFieldOrder, activeField, formState);
+  const [activeField, setActiveField] = useState<RegistrationFormField | null>(null);
+  const displayErrorMessage = getDisplayErrorMessage(formFields, activeField, formState);
 
   const handleFormDataChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
-    const field = name as FormField;
+    const field = name as RegistrationFormField;
     setFormState((prevFormState) => {
       const [isValid, errorMessage] = validateField(field, value, prevFormState);
       const hasBeenValid = prevFormState[field].hasBeenValid || isValid;
@@ -80,12 +80,12 @@ export const useFormValidation = (formFieldOrder: FormField[]) => {
 
   const handleFocus: FocusEventHandler<HTMLInputElement> = (event) => {
     const { name } = event.target;
-    const field = name as FormField;
+    const field = name as RegistrationFormField;
     setActiveField(field);
   };
 
   return {
-    displayErrorMesssage,
+    validationErrorMessage: displayErrorMessage,
     formState,
     handleFormDataChange,
     handleBlur,
