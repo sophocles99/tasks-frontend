@@ -9,6 +9,7 @@ const isValidEmail = (email: string): boolean => {
 
 const passwordChecks: PasswordCheck[] = [
   { regex: /^.{8,}$/, errorMessage: 'please include at least eight characters in your password' },
+  { regex: /^.{0,20}$/, errorMessage: 'please include no more than twenty characters in your password' },
   {
     regex: /[A-Z]/,
     errorMessage: 'please include at least one capital letter in your password',
