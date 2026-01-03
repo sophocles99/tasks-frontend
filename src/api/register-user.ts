@@ -29,12 +29,12 @@ const registerUser = async (email: string, password: string): Promise<RegisterUs
 
       if (!response.ok) {
         if (response.status >= 400 && response.status < 500) {
-          const errorMessage = response.status === 409 ? 'Email already in use.' : `Registration unsuccessful.`;
+          const errorMessage = response.status === 409 ? 'Email already in use' : `Registration unsuccessful`;
           console.error(`${errorMessage} Status: ${response.status}`);
           bail(new Error(errorMessage));
         }
         console.error(`Server error. Status: ${response.status}`);
-        throw new Error('Server error. Please try again later.');
+        throw new Error('Server error - please try again later');
       }
 
       console.log(`User ${email} registered successfully.`);
@@ -53,7 +53,7 @@ const registerUser = async (email: string, password: string): Promise<RegisterUs
     console.error('Error registering user:', error);
     return {
       isSuccess: false,
-      errorMessage: error instanceof Error ? error.message : 'Registration unsuccessful.',
+      errorMessage: error instanceof Error ? error.message : 'Registration unsuccessful',
     };
   }
 };

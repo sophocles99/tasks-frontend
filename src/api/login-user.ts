@@ -31,12 +31,12 @@ const loginUser = async (email: string, password: string): Promise<LoginResult> 
 
       if (!response.ok) {
         if (response.status >= 400 && response.status < 500) {
-          const errorMessage = response.status === 401 ? 'Invalid email or password.' : 'Login unsuccessful.';
+          const errorMessage = response.status === 401 ? 'Invalid email or password' : 'Login unsuccessful';
           console.error(`${errorMessage} Status: ${response.status}`);
           bail(new Error(errorMessage));
         }
         console.error(`Server error. Status: ${response.status}`);
-        throw new Error('Server error. Please try again later.');
+        throw new Error('Server error - please try again later');
       }
 
       console.log(`User ${email} logged in successfully.`);
@@ -55,7 +55,7 @@ const loginUser = async (email: string, password: string): Promise<LoginResult> 
     console.error('Error logging in user:', error);
     return {
       isSuccess: false,
-      errorMessage: error instanceof Error ? error.message : 'Login unsuccessful.',
+      errorMessage: error instanceof Error ? error.message : 'Login unsuccessful',
     };
   }
 };
