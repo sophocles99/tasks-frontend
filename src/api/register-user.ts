@@ -33,8 +33,8 @@ const registerUser = async (email: string, password: string): Promise<RegisterUs
           console.error(`${errorMessage} Status: ${response.status}`);
           bail(new Error(errorMessage));
         }
-        console.error(`HTTP error. Status: ${response.status}`);
-        throw new Error('Network error. Please try again later.');
+        console.error(`Server error. Status: ${response.status}`);
+        throw new Error('Server error. Please try again later.');
       }
 
       console.log(`User ${email} registered successfully.`);
