@@ -1,0 +1,23 @@
+.addTaskButtonContainer {
+  position: absolute;
+  bottom: 16px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.addTaskButton {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  background-color: var(--accent-colour);
+  color: white;
+  font-size: 56px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
